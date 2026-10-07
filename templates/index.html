@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sandi Klasik - Bengkel Cipher</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="wrap">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+
+        <div class="logo">
+            <i></i>
+            <i></i>
+        </div>
+
+        <div>
+            <h1>Kelompok 5</h1>
+        </div>
+
+        <div class="stats">
+            <span>
+                <b>26</b>
+                mode huruf
+            </span>
+
+            <span>
+                <b>256</b>
+                mode byte
+            </span>
+        </div>
+
+    </header>
+
+    <p class="sub">
+        Enkripsi dan dekripsi teks atau file dengan tujuh cipher klasik.
+        Pilih cipher, isi kunci, lalu jalankan.
+    </p>
+
+
+    <!-- =====================================================
+         PILIHAN CIPHER
+    ====================================================== -->
+
+    <div
+        class="tabs"
+        id="tabs"
+    ></div>
+
+
+    <!-- =====================================================
+         INFORMASI CIPHER
+    ====================================================== -->
+
+    <div
+        class="info"
+        id="infoBox"
+    ></div>
+
+
+    <!-- =====================================================
+         MODE ENKRIPSI / DEKRIPSI
+         DAN MODE TEKS / FILE
+    ====================================================== -->
+
+    <div class="bar">
+
+        <div
+            class="seg"
+            id="segMode"
+        >
+            <button
+                data-v="encrypt"
+                class="on"
+            >
+                Enkripsi
+            </button>
+
+            <button
+                data-v="decrypt"
+            >
+                Dekripsi
+            </button>
+        </div>
+
+
+        <div
+            class="seg"
+            id="segType"
+        >
+            <button
+                data-v="text"
+                class="on"
+            >
+                Teks
+            </button>
+
+            <button
+                data-v="file"
+            >
+                File
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         INPUT KUNCI
+    ====================================================== -->
+
+    <section class="keyrow">
+
+        <!-- Kunci biasa -->
+
+        <div id="keybox">
+
+            <label for="key">
+                Kunci
+            </label>
+
+            <div
+                class="hint"
+                id="khint"
+            ></div>
+
+            <div class="kin">
+
+                <input
+                    type="text"
+                    id="key"
+                    autocomplete="off"
+                    oninput="strip()"
+                >
+
+                <button
+                    class="btn"
+                    onclick="ex()"
+                >
+                    Isi contoh
+                </button>
+
+                <button
+                    class="btn hide"
+                    id="genSub"
+                    onclick="genSub()"
+                >
+                    Generate
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Kunci One-Time Pad -->
+
+        <div
+            id="otpbox"
+            class="hide"
+        >
+
+            <label>
+                File kunci One-Time Pad
+            </label>
+
+            <div class="hint">
+                Berisi huruf acak, minimal sepanjang pesan.
+                Huruf berlebih tidak dipakai.
+            </div>
+
+            <div class="kin">
+
+                <input
+                    type="file"
+                    id="keyfile"
+                >
+
+                <input
+                    type="text"
+                    id="otpn"
+                    value="10000"
+                    title="Jumlah huruf"
+                    style="flex:0 0 110px;min-width:90px"
+                >
+
+                <button
+                    class="btn"
+                    onclick="genOtp()"
+                >
+                    Generate OTP (huruf)
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Tabel alfabet -->
+
+        <div
+            class="strip"
+            id="strip"
+        ></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INPUT DAN OUTPUT
+    ====================================================== -->
+
+    <div class="grid">
+
+        <!-- =================================================
+             INPUT
+        ================================================== -->
+
+        <div class="pane">
+
+            <div class="ph">
+
+                <span id="inTitle">
+                    Plainteks
+                </span>
+
+                <small id="cnt"></small>
+
+            </div>
+
+
+            <!-- Input teks -->
+
+            <textarea
+                id="text"
+                placeholder="Ketik atau tempel pesan di sini"
+                oninput="cnt()"
+            ></textarea>
+
+
+            <!-- Input file -->
+
+            <label
+                class="drop hide"
+                id="drop"
+            >
+
+                <input
+                    type="file"
+                    id="file"
+                >
+
+                <div style="font-size:30px">
+                    &#128196;
+                </div>
+
+                <div id="dtxt">
+                    Tarik file ke sini atau klik untuk memilih.
+                    <br>
+                    Semua jenis file bisa diproses.
+                </div>
+
+            </label>
+
+        </div>
+
+
+        <!-- =================================================
+             OUTPUT
+        ================================================== -->
+
+        <div class="pane out">
+
+            <div class="ph">
+
+                <span id="outTitle">
+                    Cipherteks
+                </span>
+
+                <select
+                    id="group"
+                    title="Tampilan cipherteks"
+                >
+                    <option value="0">
+                        Tanpa spasi
+                    </option>
+
+                    <option value="5">
+                        Kelompok 5 huruf
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div
+                class="res empty"
+                id="out"
+            >
+                Hasil akan muncul di sini.
+            </div>
+
+
+            <div
+                class="acts"
+                id="oacts"
+            >
+
+                <button
+                    class="btn"
+                    onclick="copyO()"
+                >
+                    Copy
+                </button>
+
+                <button
+                    class="btn"
+                    onclick="saveO()"
+                >
+                    Simpan File
+                </button>
+
+                <button
+                    class="btn"
+                    onclick="swap()"
+                >
+                    Pakai sebagai input
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         TOMBOL PROSES
+    ====================================================== -->
+
+    <div class="cta">
+
+        <button
+            class="btn go"
+            id="go"
+            onclick="run()"
+        >
+            Enkripsi
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST / NOTIFIKASI
+========================================================== -->
+
+<div id="toast"></div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+></script>
+
+</body>
+</html>

@@ -1,0 +1,950 @@
+:root {
+    --bg: #f3f2ff;
+    --ink: #1c1b3a;
+    --mut: #6b6a8c;
+    --line: #dcdaf5;
+    --card: #ffffff;
+
+    --acc: #5b43f5;
+    --acc2: #e8e4ff;
+
+    --mint: #0fa97a;
+    --mint2: #e2f8f0;
+
+    --bad: #d6336c;
+}
+
+
+/* ============================================================
+   RESET
+============================================================ */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* ============================================================
+   BODY
+============================================================ */
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+
+    font:
+        15px/1.5
+        "Segoe UI",
+        system-ui,
+        sans-serif;
+}
+
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.wrap {
+    max-width: 1080px;
+
+    margin: 0 auto;
+
+    padding:
+        22px
+        18px
+        60px;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 6px;
+}
+
+
+.logo {
+    width: 44px;
+    height: 44px;
+
+    position: relative;
+}
+
+
+.logo i {
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 12px;
+
+    background: var(--acc);
+}
+
+
+.logo i + i {
+    background: var(--mint);
+
+    transform:
+        rotate(18deg)
+        scale(0.72);
+
+    opacity: 0.9;
+}
+
+
+h1 {
+    font-size: 30px;
+
+    margin: 0;
+
+    letter-spacing: -0.5px;
+}
+
+
+.sub {
+    color: var(--mut);
+
+    margin:
+        0
+        0
+        20px;
+}
+
+
+/* ============================================================
+   CIPHER TABS
+============================================================ */
+
+.tabs {
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    padding:
+        4px
+        2px
+        10px;
+}
+
+
+.tab {
+    flex: 0 0 auto;
+
+    border:
+        1.5px solid
+        var(--line);
+
+    background: var(--card);
+
+    border-radius: 14px;
+
+    padding:
+        9px
+        14px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font: inherit;
+
+    color: var(--ink);
+
+    transition: 0.15s;
+}
+
+
+.tab b {
+    display: block;
+
+    font-size: 14px;
+}
+
+
+.tab span {
+    font-size: 12px;
+
+    color: var(--mut);
+}
+
+
+.tab:hover {
+    border-color: var(--acc);
+}
+
+
+.tab.on {
+    background: var(--acc);
+
+    border-color: var(--acc);
+
+    color: #ffffff;
+}
+
+
+.tab.on span {
+    color: #dcd6ff;
+}
+
+
+/* ============================================================
+   MODE BAR
+============================================================ */
+
+.bar {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    align-items: center;
+
+    margin:
+        8px
+        0
+        14px;
+}
+
+
+.seg {
+    display: inline-flex;
+
+    background: var(--card);
+
+    border:
+        1.5px solid
+        var(--line);
+
+    border-radius: 12px;
+
+    padding: 3px;
+}
+
+
+.seg button {
+    border: 0;
+
+    background: none;
+
+    padding:
+        7px
+        16px;
+
+    border-radius: 9px;
+
+    font: inherit;
+
+    font-weight: 600;
+
+    color: var(--mut);
+
+    cursor: pointer;
+}
+
+
+.seg button.on {
+    background: var(--ink);
+
+    color: #ffffff;
+}
+
+
+/* ============================================================
+   KEY SECTION
+============================================================ */
+
+.keyrow {
+    background: var(--card);
+
+    border:
+        1.5px solid
+        var(--line);
+
+    border-radius: 16px;
+
+    padding: 16px;
+
+    margin-bottom: 14px;
+}
+
+
+.keyrow label {
+    font-weight: 600;
+
+    font-size: 14px;
+}
+
+
+.hint {
+    color: var(--mut);
+
+    font-size: 13px;
+
+    margin:
+        2px
+        0
+        8px;
+}
+
+
+.kin {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   INPUT
+============================================================ */
+
+input[type="text"],
+select,
+textarea {
+    border:
+        1.5px solid
+        var(--line);
+
+    border-radius: 10px;
+
+    padding:
+        10px
+        12px;
+
+    font: inherit;
+
+    background: #ffffff;
+
+    color: var(--ink);
+
+    outline: none;
+}
+
+
+input[type="text"] {
+    flex: 1;
+
+    min-width: 200px;
+
+    font-family: Consolas, monospace;
+}
+
+
+input:focus,
+textarea:focus,
+select:focus,
+.tab:focus-visible,
+button:focus-visible {
+    border-color: var(--acc);
+
+    box-shadow:
+        0 0 0 3px
+        #5b43f533;
+}
+
+
+/* ============================================================
+   BUTTON
+============================================================ */
+
+.btn {
+    border: 0;
+
+    border-radius: 10px;
+
+    padding:
+        10px
+        16px;
+
+    font: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background: var(--acc2);
+
+    color: var(--acc);
+}
+
+
+.btn:hover {
+    filter: brightness(0.96);
+}
+
+
+.go {
+    background: var(--acc);
+
+    color: #ffffff;
+
+    font-size: 16px;
+
+    padding:
+        12px
+        28px;
+}
+
+
+/* ============================================================
+   ALPHABET STRIP
+============================================================ */
+
+.strip {
+    margin-top: 12px;
+
+    overflow-x: auto;
+}
+
+
+.strip table {
+    border-collapse: separate;
+
+    border-spacing: 3px;
+
+    font:
+        600 13px
+        Consolas,
+        monospace;
+}
+
+
+.strip td {
+    width: 26px;
+
+    height: 28px;
+
+    text-align: center;
+
+    border-radius: 6px;
+}
+
+
+.strip tr:first-child td {
+    background: var(--acc2);
+
+    color: var(--acc);
+}
+
+
+.strip tr + tr td {
+    background: var(--mint2);
+
+    color: var(--mint);
+}
+
+
+.strip th {
+    font:
+        600 12px
+        "Segoe UI";
+
+    color: var(--mut);
+
+    padding-right: 8px;
+
+    text-align: right;
+}
+
+
+/* ============================================================
+   INPUT / OUTPUT GRID
+============================================================ */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 14px;
+}
+
+
+/* ============================================================
+   PANEL
+============================================================ */
+
+.pane {
+    background: var(--card);
+
+    border:
+        1.5px solid
+        var(--line);
+
+    border-radius: 16px;
+
+    padding: 16px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 300px;
+}
+
+
+.pane.out {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            var(--mint2)
+        );
+}
+
+
+.ph {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+}
+
+
+.ph small {
+    font-weight: 500;
+
+    color: var(--mut);
+}
+
+
+/* ============================================================
+   TEXTAREA
+============================================================ */
+
+textarea {
+    flex: 1;
+
+    min-height: 200px;
+
+    resize: vertical;
+
+    font-family: Consolas, monospace;
+
+    letter-spacing: 0.5px;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   FILE DROPZONE
+============================================================ */
+
+.drop {
+    flex: 1;
+
+    border:
+        2px dashed
+        var(--line);
+
+    border-radius: 14px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    color: var(--mut);
+
+    transition: 0.15s;
+}
+
+
+.drop.over,
+.drop:hover {
+    border-color: var(--acc);
+
+    background: var(--acc2);
+}
+
+
+.drop b {
+    color: var(--ink);
+
+    word-break: break-all;
+}
+
+
+.drop input {
+    display: none;
+}
+
+
+/* ============================================================
+   OUTPUT
+============================================================ */
+
+.res {
+    flex: 1;
+
+    font-family: Consolas, monospace;
+
+    letter-spacing: 0.8px;
+
+    word-break: break-all;
+
+    white-space: pre-wrap;
+
+    min-height: 200px;
+
+    color: #0b6e51;
+}
+
+
+.empty {
+    color: var(--mut);
+
+    font-family: "Segoe UI";
+
+    letter-spacing: 0;
+}
+
+
+/* ============================================================
+   ACTION BUTTONS
+============================================================ */
+
+.acts {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+}
+
+
+.cta {
+    display: flex;
+
+    justify-content: center;
+
+    margin:
+        16px
+        0;
+}
+
+
+/* ============================================================
+   TOAST
+============================================================ */
+
+#toast {
+    position: fixed;
+
+    left: 50%;
+
+    bottom: 24px;
+
+    transform:
+        translateX(-50%)
+        translateY(80px);
+
+    background: var(--ink);
+
+    color: #ffffff;
+
+    padding:
+        11px
+        18px;
+
+    border-radius: 12px;
+
+    transition: 0.25s;
+
+    max-width: 90vw;
+
+    z-index: 9;
+}
+
+
+#toast.show {
+    transform:
+        translateX(-50%);
+}
+
+
+#toast.bad {
+    background: var(--bad);
+}
+
+
+/* ============================================================
+   UTILITY
+============================================================ */
+
+.hide {
+    display: none !important;
+}
+
+
+.spin {
+    display: inline-block;
+
+    width: 14px;
+    height: 14px;
+
+    border:
+        2px solid
+        #ffffff99;
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+        r
+        0.7s
+        linear
+        infinite;
+
+    vertical-align: -2px;
+
+    margin-right: 6px;
+}
+
+
+@keyframes r {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+.stats {
+    margin-left: auto;
+
+    display: flex;
+
+    gap: 18px;
+
+    font-size: 13px;
+
+    color: var(--mut);
+}
+
+
+.stats b {
+    font-size: 22px;
+
+    color: var(--acc);
+
+    margin-right: 5px;
+}
+
+
+/* ============================================================
+   INFO BOX
+============================================================ */
+
+.info {
+    background: var(--card);
+
+    border:
+        1.5px solid
+        var(--line);
+
+    border-radius: 16px;
+
+    padding:
+        14px
+        16px;
+
+    margin:
+        6px
+        0
+        12px;
+
+    display: flex;
+
+    gap: 24px;
+
+    flex-wrap: wrap;
+
+    align-items: flex-start;
+}
+
+
+.info code {
+    display: block;
+
+    margin-top: 6px;
+
+    background: var(--acc2);
+
+    color: var(--acc);
+
+    padding:
+        6px
+        10px;
+
+    border-radius: 8px;
+
+    font:
+        600 13px
+        Consolas,
+        monospace;
+}
+
+
+.info ul {
+    margin: 0;
+
+    padding-left: 18px;
+
+    color: var(--mut);
+
+    font-size: 13px;
+
+    flex: 1;
+
+    min-width: 240px;
+}
+
+
+/* ============================================================
+   LABEL
+============================================================ */
+
+.lb {
+    font-size: 12px;
+
+    color: var(--mut);
+
+    font-weight: 600;
+
+    margin:
+        8px
+        0
+        4px;
+
+    word-break: break-all;
+}
+
+
+/* ============================================================
+   TERMINAL OUTPUT
+============================================================ */
+
+.term {
+    background: #14132b;
+
+    color: #8cf5c9;
+
+    border-radius: 10px;
+
+    padding:
+        10px
+        12px;
+
+    margin: 0;
+
+    font:
+        13px/1.5
+        Consolas,
+        monospace;
+
+    white-space: pre-wrap;
+
+    word-break: break-all;
+
+    max-height: 220px;
+
+    overflow: auto;
+}
+
+
+/* ============================================================
+   FILE PREVIEW
+============================================================ */
+
+.prev {
+    max-width: 100%;
+
+    max-height: 200px;
+
+    border-radius: 10px;
+
+    margin:
+        8px
+        0;
+
+    display: block;
+}
+
+
+.ok {
+    color: var(--mint);
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 760px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    h1 {
+        font-size: 24px;
+    }
+
+}
+
+
+/* ============================================================
+   REDUCE MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        transition: none !important;
+
+        animation: none !important;
+    }
+
+}
